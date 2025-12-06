@@ -5,6 +5,20 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Irqi Muhammad Fakhrezi — Portfolio</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Tambahan agar kartu di Home punya efek hover yang sama dengan Projects */
+    .card, .hero-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover, .hero-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+      border-color: rgba(255,255,255,0.1);
+    }
+    .hero-card {
+      background: var(--card); /* Menyamakan warna background */
+    }
+  </style>
 </head>
 <body>
   <header class="nav-wrapper">
@@ -95,5 +109,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-
-
