@@ -1,32 +1,12 @@
-// Theme, mobile menu, reveal, lightbox, contact simulation
 document.addEventListener('DOMContentLoaded', () => {
   const body = document.body;
-  const themeBtns = document.querySelectorAll('#theme-toggle');
   const burger = document.getElementById('burger');
   const yearEls = document.querySelectorAll('#year');
-  const lightbox = document.getElementById('lightbox');
-  const lbImg = document.getElementById('lb-img');
-  const lbCaption = document.getElementById('lb-caption');
-  const lbClose = document.getElementById('lb-close');
 
-  // year
+  // Set Year automatically
   yearEls.forEach(el => el.textContent = new Date().getFullYear());
 
-  // load theme from storage
-  const saved = localStorage.getItem('theme');
-  if (saved === 'light') body.classList.add('light');
-
-  // theme toggle
-  themeBtns.forEach(btn => {
-    btn.textContent = body.classList.contains('light') ? 'Dark' : 'Light';
-    btn.addEventListener('click', () => {
-      const isLight = body.classList.toggle('light');
-      localStorage.setItem('theme', isLight ? 'light' : 'dark');
-      btn.textContent = isLight ? 'Dark' : 'Light';
-    });
-  });
-
-  // burger toggle for small screens
+  // Burger Menu Toggle
   if (burger) {
     burger.addEventListener('click', () => {
       const links = document.querySelector('.nav-links');
@@ -38,69 +18,50 @@ document.addEventListener('DOMContentLoaded', () => {
         links.style.gap = '12px';
         links.style.padding = '12px';
         links.style.marginTop = '8px';
+        links.style.background = 'var(--card)';
+        links.style.position = 'absolute';
+        links.style.top = '100%';
+        links.style.left = '0';
+        links.style.right = '0';
+        links.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
       } else {
         links.style.display = '';
       }
     });
   }
 
-  // reveal on scroll
+  // Reveal on Scroll Animation
   const reveals = document.querySelectorAll('.reveal');
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) e.target.classList.add('visible');
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.1 });
   reveals.forEach(r => obs.observe(r));
 
-  // Lightbox: open when clicking a certificate thumbnail
-  document.querySelectorAll('.cert-thumb img, .cert-thumb').forEach(el => {
-    el.addEventListener('click', (e) => {
-      const imgEl = e.target.tagName === 'IMG' ? e.target : e.currentTarget.querySelector('img');
-      if(!imgEl) return;
-      const src = imgEl.getAttribute('src');
-      const caption = imgEl.getAttribute('data-caption') || imgEl.alt || '';
-      lbImg.src = src;
-      lbCaption.textContent = caption;
-      lightbox.classList.add('active');
-      lightbox.setAttribute('aria-hidden','false');
-    });
-  });
+  // --- FILTER PROJECT LOGIC (BARU) ---
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const projectCards = document.querySelectorAll('.project-card');
 
-  // close lightbox
-  function closeLb(){
-    lightbox.classList.remove('active');
-    lightbox.setAttribute('aria-hidden','true');
-    lbImg.src = '';
+  if (filterBtns.length > 0) {
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // 1. Remove active class from all buttons
+        filterBtns.forEach(b => b.classList.remove('active'));
+        // 2. Add active class to clicked button
+        btn.classList.add('active');
+
+        const filterValue = btn.getAttribute('data-filter');
+
+        // 3. Show/Hide Cards
+        projectCards.forEach(card => {
+          if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+            card.classList.remove('hide');
+          } else {
+            card.classList.add('hide');
+          }
+        });
+      });
+    });
   }
-  if (lbClose) lbClose.addEventListener('click', closeLb);
-  if (lightbox) lightbox.addEventListener('click', (e) => {
-    if(e.target === lightbox) closeLb();
-  });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeLb();
-  });
-
-  // Contact form simulation
-  const forms = document.querySelectorAll('#contact-form');
-  forms.forEach(form => {
-    const formMsg = form.querySelector('#form-msg');
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      if(formMsg) formMsg.textContent = "Pesan terkirim! (simulasi). Kamu bisa hubungi via email: irqifakhrezi03@gmail.com";
-      form.reset();
-    });
-  });
-
-  // Smooth internal anchor scrolling
-  document.querySelectorAll('a[href^="#"]').forEach(a=>{
-    a.addEventListener('click', function(e){
-      const href = this.getAttribute('href');
-      if(href.length > 1){
-        e.preventDefault();
-        const target = document.querySelector(href);
-        if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  });
 });
