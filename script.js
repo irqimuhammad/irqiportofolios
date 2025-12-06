@@ -53,48 +53,56 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- LIGHTBOX / POP-UP LOGIC (BARU) ---
+  // --- UNIVERSAL LIGHTBOX LOGIC (Updated) ---
   const lightbox = document.getElementById('lightbox');
   const lbImg = document.getElementById('lb-img');
   const lbClose = document.getElementById('lb-close');
+  const lbCaption = document.getElementById('lb-caption'); // Ambil elemen caption
   
-  // Pilih semua elemen .thumb (gambar project)
+  // 1. Logic untuk PROJECTS (Background Image)
   const thumbs = document.querySelectorAll('.thumb');
-
   thumbs.forEach(thumb => {
     thumb.addEventListener('click', () => {
-      // Ambil URL gambar dari style background-image
       const style = window.getComputedStyle(thumb);
       const bgImage = style.backgroundImage;
-      
-      // Bersihkan string url("...") menjadi link bersih
-      // Contoh: url(".../photo.jpg") -> .../photo.jpg
       const src = bgImage.slice(4, -1).replace(/"/g, "");
-
-      // Jika ada gambar (bukan none), tampilkan lightbox
+      
       if (src && src !== 'none') {
         lbImg.src = src;
+        if(lbCaption) lbCaption.textContent = ""; // Kosongkan caption untuk project
         lightbox.classList.add('active');
       }
+    });
+  });
+
+  // 2. Logic untuk CERTIFICATES (Img Tag) - BARU!
+  const certImages = document.querySelectorAll('.cert-thumb img');
+  certImages.forEach(img => {
+    img.addEventListener('click', () => {
+      lbImg.src = img.src; // Ambil src langsung dari tag img
+      
+      // Ambil text dari atribut data-caption
+      const captionText = img.getAttribute('data-caption');
+      if(lbCaption) lbCaption.textContent = captionText || ""; 
+      
+      lightbox.classList.add('active');
     });
   });
 
   // Fungsi Tutup Lightbox
   const closeLb = () => {
     lightbox.classList.remove('active');
-    setTimeout(() => { lbImg.src = ''; }, 300); // Hapus src setelah animasi selesai
+    setTimeout(() => { lbImg.src = ''; }, 300);
   };
 
   if (lbClose) lbClose.addEventListener('click', closeLb);
   
-  // Tutup jika klik area gelap di luar gambar
   if (lightbox) {
     lightbox.addEventListener('click', (e) => {
       if (e.target === lightbox) closeLb();
     });
   }
   
-  // Tutup pakai tombol ESC
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeLb();
   });
