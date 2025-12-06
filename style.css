@@ -1,5 +1,4 @@
 /* iOS Dark Minimal style — ruby red accent */
-/* Fonts: use system UI (close to iOS SF) */
 :root{
   --bg:#0b0e11;
   --card:#0f1418;
@@ -56,7 +55,6 @@ body{
 .cta-row{ display:flex; gap:12px; margin-bottom:14px; }
 .btn{ display:inline-block; background:linear-gradient(90deg,var(--accent), #8c1116); color:white; padding:10px 16px; border-radius:12px; text-decoration:none; transition: transform var(--trans), box-shadow var(--trans); box-shadow: 0 10px 30px rgba(200,36,42,0.08); font-weight:600; }
 .btn:hover{ transform:translateY(-5px); }
-.btn-outline{ background:transparent; border:1px solid rgba(255,255,255,0.04); color:var(--text); }
 
 /* micro details */
 .micro{ display:flex; gap:12px; color:var(--muted); margin-top:12px; list-style:none; padding:0; font-size:14px; }
@@ -77,57 +75,90 @@ body{
 .card{ background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.01)); padding:18px; border-radius:14px; border:1px solid rgba(255,255,255,0.02); box-shadow: 0 8px 24px rgba(0,0,0,0.5); color:var(--text); }
 .card.small{ flex:1; }
 
-/* about grid */
-.about-grid{ display:grid; grid-template-columns:1fr 320px; gap:18px; align-items:start; }
+/* --- PROJECTS GRID & CARDS (UPDATED) --- */
+/* Menggunakan layout grid 2 kolom yang rapi */
+.projects-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:24px; margin-top:12px; }
 
-/* timeline (experience) */
-.timeline{ margin-top:12px; display:flex; flex-direction:column; gap:18px; }
-.timeline-item{ display:flex; gap:18px; align-items:flex-start; }
-.ti-left{ min-width:110px; color:var(--muted); font-size:14px; }
-.ti-card{ background:var(--card); padding:14px; border-radius:12px; border:1px solid rgba(255,255,255,0.02); box-shadow: 0 8px 20px rgba(0,0,0,0.45); }
+.project-card{ 
+  display:flex; 
+  flex-direction: column; /* Gambar di atas, teks di bawah */
+  background:var(--card); 
+  border-radius:16px; 
+  border:1px solid rgba(255,255,255,0.02); 
+  overflow: hidden; /* Agar gambar tidak keluar rounded corner */
+  transition: transform var(--trans), box-shadow var(--trans); 
+  animation: fadeIn 0.5s ease; /* Animasi muncul */
+}
 
-/* projects grid */
-.projects-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:18px; margin-top:12px; }
-.project-card{ display:flex; gap:14px; padding:14px; background:var(--card); border-radius:12px; border:1px solid rgba(255,255,255,0.02); transition: transform var(--trans), box-shadow var(--trans); }
-.project-card:hover{ transform:translateY(-8px); box-shadow: 0 18px 40px rgba(0,0,0,0.6); }
-.thumb{ width:120px; min-width:120px; height:90px; border-radius:10px; background:linear-gradient(135deg, rgba(200,36,42,0.12), rgba(255,255,255,0.01)); }
+.project-card:hover{ 
+  transform:translateY(-8px); 
+  box-shadow: 0 18px 40px rgba(0,0,0,0.6); 
+}
 
-/* certificates grid (thumbnails) */
-.cert-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:14px; }
-.cert-thumb{ background:var(--card); border-radius:12px; padding:10px; display:flex; flex-direction:column; gap:8px; align-items:center; justify-content:center; text-align:center; border:1px solid rgba(255,255,255,0.02); cursor:pointer; transition: transform var(--trans), box-shadow var(--trans); }
-.cert-thumb img{ width:100%; height:160px; object-fit:cover; border-radius:8px; display:block; }
-.cert-thumb figcaption{ color:var(--muted); font-size:13px; }
+/* Gambar Project */
+.thumb{ 
+  width:100%; 
+  height:200px; /* Tinggi gambar fix agar rapi */
+  background-size: cover; 
+  background-position: center; 
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
 
-/* contact */
-.contact-grid{ display:grid; grid-template-columns:1fr 320px; gap:20px; }
-.contact-form input, .contact-form textarea{ width:100%; padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.04); background:transparent; color:var(--text); margin-bottom:12px; }
+/* Info Project */
+.project-info { padding: 18px; }
+
+.project-tag {
+  display: inline-block;
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(200,36,42,0.1);
+  padding: 4px 10px;
+  border-radius: 50px;
+  margin-bottom: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.project-info h3 { margin: 0 0 8px; font-size: 18px; color: var(--text); }
+.project-info p { margin: 0; font-size: 14px; line-height: 1.6; }
+
+/* FILTER BUTTONS */
+.filter-container { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
+.filter-btn {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--muted);
+  padding: 8px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all var(--trans);
+  font-weight: 600;
+  font-family: inherit;
+}
+.filter-btn:hover, .filter-btn.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  box-shadow: 0 0 20px rgba(200,36,42,0.3);
+}
+
+/* Class untuk hide/show */
+.project-card.hide { display: none; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
 /* footer */
 .footer{ padding:18px 0; border-top:1px solid rgba(255,255,255,0.02); color:var(--muted); }
 
-/* lightbox */
-.lightbox{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; background: rgba(3,3,3,0.8); z-index:200; }
-.lightbox.active{ display:flex; }
-.lightbox img{ max-width:92%; max-height:84%; border-radius:10px; box-shadow: 0 30px 70px rgba(0,0,0,0.7); }
-.lb-close{ position:fixed; top:28px; right:28px; background:transparent; color:#fff; border:0; font-size:26px; cursor:pointer; z-index:210; }
-.lb-caption{ color:#ddd; margin-top:12px; text-align:center; }
-
 /* responsive */
 @media (max-width:980px){
   .hero{ flex-direction:column; gap:18px; }
-  .about-grid, .contact-grid{ grid-template-columns:1fr; }
-  .projects-grid{ grid-template-columns:1fr; }
-  .cert-grid{ grid-template-columns:repeat(2,1fr); }
+  .cards, .projects-grid{ flex-direction: column; display: flex; } /* Fallback ke flex column di mobile */
   .nav-links{ display:none; }
   .burger{ display:inline-block; }
-}
-@media (max-width:560px){
-  .cert-grid{ grid-template-columns:1fr; }
+  .filter-container { gap: 8px; }
 }
 
 /* reveal animations default */
 .reveal{ opacity:0; transform: translateY(8px); transition: opacity 560ms cubic-bezier(.2,.9,.2,1), transform 560ms cubic-bezier(.2,.9,.2,1); }
 .reveal.visible{ opacity:1; transform: translateY(0); }
-
-/* light mode */
-body.light{ --bg:#f6f7f9; --card:#fff; --muted:#5b6a72; --text:#0b1220; --glass-2: rgba(11,18,32,0.04); background:linear-gradient(180deg,#fbfcfd,#eef2f5 120%); }
