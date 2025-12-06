@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Contact — Irqi Muhammad Fakhrezi</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Agar area form punya bingkai juga */
+    .form-card {
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.02);
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+  </style>
 </head>
 <body>
   <header class="nav-wrapper">
@@ -27,8 +37,9 @@
 
   <main class="container reveal">
     <section class="section contact-grid">
-      <div>
-        <h2>Contact</h2>
+      
+      <div class="form-card">
+        <h2 style="margin-top:0;">Contact</h2>
         <form id="contact-form" class="contact-form">
           <label for="name">Nama</label>
           <input id="name" type="text" required />
@@ -60,5 +71,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-
-
