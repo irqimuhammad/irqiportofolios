@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Projects — Irqi Muhammad Fakhrezi</title>
+  <link rel="stylesheet" href="style.css">
+  
+  <style>
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .project-card {
+      background: #fff; /* Sesuaikan jika background Anda gelap */
+      border: 1px solid #ddd; /* Border tipis */
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .project-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+    .project-content {
+      padding: 1.5rem;
+    }
+    .project-tag {
+      font-size: 0.8rem;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    .btn-small {
+      display: inline-block;
+      margin-top: 1rem;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.9rem;
+      color: #333; /* Sesuaikan dengan warna tema */
+    }
+  </style>
+</head>
+<body>
+  <header class="nav-wrapper">
+    <nav class="container nav">
+      <a class="logo" href="index.html">Irqi Muhammad Fakhrezi</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="experience.html">Experience</a></li>
+        <li><a href="projects.html" class="active">Projects</a></li> <li><a href="certificates.html">Certificates</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a class="cv-btn" href="CV_Irqi_Muhammad_Fakhrezi.pdf" download>Download CV</a>
+        <button class="burger" id="burger" aria-label="menu">☰</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="section container reveal">
+      <div class="intro">
+        <h1>My <span class="accent">Projects</span></h1>
+        <p class="lead">Berikut adalah beberapa project Design, Fotografi, dan Videografi yang pernah saya kerjakan.</p>
+      </div>
+
+      <div class="project-grid">
+        
+        <article class="project-card">
+          <img src="project1.jpg" alt="Desain Feed Instagram" class="project-img"> 
+          <div class="project-content">
+            <span class="project-tag">Social Media Design</span>
+            <h3>Instagram Feed Design</h3>
+            <p>Membuat layout visual yang estetik untuk klien UMKM guna meningkatkan engagement media sosial.</p>
+            </div>
+        </article>
+
+        <article class="project-card">
+          <img src="project2.jpg" alt="Liputan Event Kampus" class="project-img">
+          <div class="project-content">
+            <span class="project-tag">Photography</span>
+            <h3>Event Documentation</h3>
+            <p>Dokumentasi acara seminar nasional di UNJ, menangkap momen-momen kunci dan pembicara.</p>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <img src="project3.jpg" alt="Video Editing" class="project-img">
+          <div class="project-content">
+            <span class="project-tag">Video Editing</span>
+            <h3>Company Profile Video</h3>
+            <p>Editing video profil perusahaan berdurasi 3 menit menggunakan Adobe Premiere Pro.</p>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <img src="project4.jpg" alt="Poster Design" class="project-img">
+          <div class="project-content">
+            <span class="project-tag">Graphic Design</span>
+            <h3>Poster Lomba Nasional</h3>
+            <p>Desain poster digital untuk keperluan publikasi event lomba tingkat nasional.</p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© <span id="year"></span> Irqi Muhammad Fakhrezi — All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
