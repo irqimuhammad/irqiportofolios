@@ -5,53 +5,21 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Projects — Irqi Muhammad Fakhrezi</title>
   <link rel="stylesheet" href="style.css">
-  
   <style>
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-    .project-card {
-      background: #fff; /* Sesuaikan jika background Anda gelap */
-      border: 1px solid #ddd; /* Border tipis */
-      border-radius: 8px;
-      overflow: hidden;
-      transition: transform 0.3s ease;
-    }
-    .project-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    }
-    .project-img {
+    /* CSS Tambahan Khusus Halaman Ini agar Video Landscape Sempurna */
+    .thumb-video {
       width: 100%;
-      height: 200px;
+      aspect-ratio: 16 / 9; /* Memaksa rasio layar lebar */
+      height: auto;
       object-fit: cover;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      background: #000;
       display: block;
-    }
-    .project-content {
-      padding: 1.5rem;
-    }
-    .project-tag {
-      font-size: 0.8rem;
-      color: #666;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 0.5rem;
-      display: block;
-    }
-    .btn-small {
-      display: inline-block;
-      margin-top: 1rem;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 0.9rem;
-      color: #333; /* Sesuaikan dengan warna tema */
     }
   </style>
 </head>
 <body>
+
   <header class="nav-wrapper">
     <nav class="container nav">
       <a class="logo" href="index.html">Irqi Muhammad Fakhrezi</a>
@@ -59,7 +27,8 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="experience.html">Experience</a></li>
-        <li><a href="projects.html" class="active">Projects</a></li> <li><a href="certificates.html">Certificates</a></li>
+        <li><a href="projects.html" class="active">Projects</a></li>
+        <li><a href="certificates.html">Certificates</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
       <div class="nav-actions">
@@ -71,46 +40,147 @@
 
   <main>
     <section class="section container reveal">
-      <div class="intro">
-        <h1>My <span class="accent">Projects</span></h1>
-        <p class="lead">Berikut adalah beberapa project Design, Fotografi, dan Videografi yang pernah saya kerjakan.</p>
+      <div class="intro" style="margin-bottom: 2rem; text-align:center;">
+        <h1>Selected <span class="accent">Projects</span></h1>
+        <p class="lead">Kumpulan karya Graphic Design, Social Media, Photography, dan Videography.</p>
       </div>
 
-      <div class="project-grid">
+      <div class="filter-container">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="design">Graphic Design</button>
+        <button class="filter-btn" data-filter="social">Social Media</button>
+        <button class="filter-btn" data-filter="photo">Photography</button>
+        <button class="filter-btn" data-filter="video">Videography</button>
+      </div>
+
+      <div class="projects-grid">
         
-        <article class="project-card">
-          <img src="project1.jpg" alt="Desain Feed Instagram" class="project-img"> 
-          <div class="project-content">
-            <span class="project-tag">Social Media Design</span>
-            <h3>Instagram Feed Design</h3>
-            <p>Membuat layout visual yang estetik untuk klien UMKM guna meningkatkan engagement media sosial.</p>
-            </div>
-        </article>
-
-        <article class="project-card">
-          <img src="project2.jpg" alt="Liputan Event Kampus" class="project-img">
-          <div class="project-content">
-            <span class="project-tag">Photography</span>
-            <h3>Event Documentation</h3>
-            <p>Dokumentasi acara seminar nasional di UNJ, menangkap momen-momen kunci dan pembicara.</p>
+        <article class="project-card" data-category="video">
+          <video class="thumb-video" controls>
+            <source src="videowedding.mp4" type="video/mp4">
+            Browser Anda tidak mendukung tag video.
+          </video>
+          <div class="project-info">
+            <span class="project-tag tag-video">Videography</span>
+            <h3>Cinematic Wedding: Zahra & Noval</h3>
+            <p class="muted">Highlight momen pernikahan syahdu dengan pengambilan gambar landscape yang sinematik.</p>
           </div>
         </article>
 
-        <article class="project-card">
-          <img src="project3.jpg" alt="Video Editing" class="project-img">
-          <div class="project-content">
-            <span class="project-tag">Video Editing</span>
-            <h3>Company Profile Video</h3>
-            <p>Editing video profil perusahaan berdurasi 3 menit menggunakan Adobe Premiere Pro.</p>
+        <article class="project-card" data-category="photo">
+          <div class="thumb" style="background-image: url('photo2.jpg');"></div>
+          <div class="project-info">
+            <span class="project-tag tag-photo">Photography</span>
+            <h3>The Wedding Outdoor</h3>
+            <p class="muted">Sesi pemotretan wedding outdoor yang menangkap momen romantis dengan latar natural.</p>
           </div>
         </article>
 
-        <article class="project-card">
-          <img src="project4.jpg" alt="Poster Design" class="project-img">
-          <div class="project-content">
+        <article class="project-card" data-category="photo">
+          <div class="thumb" style="background-image: url('photo4.jpg');"></div>
+          <div class="project-info">
+            <span class="project-tag tag-photo">Photography</span>
+            <h3>Engagement Session</h3>
+            <p class="muted">Dokumentasi pre-wedding/engagement dengan busana Batik modern yang elegan.</p>
+          </div>
+        </article>
+
+        <article class="project-card" data-category="photo">
+          <div class="thumb" style="background-image: url('photo3.jpg');"></div>
+          <div class="project-info">
+            <span class="project-tag tag-photo">Photography</span>
+            <h3>Grand Entrance</h3>
+            <p class="muted">Menangkap momen estetik pengantin memasuki area resepsi dengan pencahayaan dramatis.</p>
+          </div>
+        </article>
+
+        <article class="project-card" data-category="photo">
+          <div class="thumb" style="background-image: url('photo1.jpg');"></div>
+          <div class="project-info">
+            <span class="project-tag tag-photo">Photography</span>
+            <h3>Intimate Indoor Portrait</h3>
+            <p class="muted">Potret pasangan dengan konsep klasik dan pencahayaan warm yang syahdu.</p>
+          </div>
+        </article>
+
+        <article class="project-card" data-category="design">
+          <div class="thumb" style="background-image: url('1.jpg');"></div>
+          <div class="project-info">
             <span class="project-tag">Graphic Design</span>
-            <h3>Poster Lomba Nasional</h3>
-            <p>Desain poster digital untuk keperluan publikasi event lomba tingkat nasional.</p>
+            <h3>Cover Company Profile</h3>
+            <p class="muted">Desain sampul profil sanggar Daya Presta dengan layout modern.</p>
+          </div>
+        </article>
+
+        <article class="project-card" data-category="design">
+          <div class="thumb" style="background-image: url('Poster 1 Daya Presta.jpg');"></div>
+          <div class="project-info">
+            <span class="project-tag">Graphic Design</span>
+            <h3>Poster Dokumentasi Karya</h3>
+            <p class="muted">Publikasi visual untuk prestasi Pentas HUT Jakarta.</p>
+          </div>
+        </article>
+
+        <article class="project-card" data-category="design">
+          <div class="thumb" style="background-image: url('Poster 2 Daya Presta.jpg');"></div>
+          <div class="project-info">
+            <span class="project-tag">Graphic Design</span>
+            <h3>Brosur Profil Sanggar</h3>
+            <p class="muted">Desain tri-fold brochure "Tentang Kami" yang informatif.</p>
+          </div>
+        </article>
+
+        <article class="project-card" data-category="design">
+          <div class="thumb" style="background-image: url('Ucapan SUT Daya Presta.jpg');"></div>
+          <div class="project-info">
+            <span class="project-tag">Graphic Design</span>
+            <h3>Digital Greeting Card</h3>
+            <p class="muted">Desain ucapan ulang tahun sanggar untuk sosial media.</p>
+          </div>
+        </article>
+
+        <article class="project-card" data-category="social">
+          <div class="thumb" style="background-image: url('1 (2).jpg');"></div>
+          <div class="project-info">
+            <span class="project-tag tag-social">Social Media</span>
+            <h3>Content Feed: Team ASSA</h3>
+            <p class="muted">Dokumentasi branding tim ASSA Corporation.</p>
+          </div>
+        </article>
+
+        <article class="project-card" data-category="social">
+          <div class="thumb" style="background-image: url('4 (2).jpg');"></div>
+          <div class="project-info">
+            <span class="project-tag tag-social">Social Media</span>
+            <h3>Raker Documentation</h3>
+            <p class="muted">Foto liputan suasana meeting untuk konten update harian.</p>
+          </div>
+        </article>
+
+        <article class="project-card" data-category="social">
+          <div class="thumb" style="background-image: url('2 (2).jpg');"></div>
+          <div class="project-info">
+            <span class="project-tag tag-social">Social Media</span>
+            <h3>Candid Discussion</h3>
+            <p class="muted">Menangkap momen diskusi interaktif tim.</p>
+          </div>
+        </article>
+        
+        <article class="project-card" data-category="social">
+          <div class="thumb" style="background-image: url('5.jpg');"></div>
+          <div class="project-info">
+            <span class="project-tag tag-social">Social Media</span>
+            <h3>Meeting Activity</h3>
+            <p class="muted">Konten visual kegiatan internal perusahaan.</p>
+          </div>
+        </article>
+        
+         <article class="project-card" data-category="social">
+          <div class="thumb" style="background-image: url('3 (2).jpg');"></div>
+          <div class="project-info">
+            <span class="project-tag tag-social">Social Media</span>
+            <h3>Focus Group Session</h3>
+            <p class="muted">Dokumentasi sesi diskusi strategi Raker.</p>
           </div>
         </article>
 
@@ -119,7 +189,7 @@
   </main>
 
   <footer class="footer">
-    <div class="container">
+    <div class="container" style="text-align: center;">
       <p>© <span id="year"></span> Irqi Muhammad Fakhrezi — All rights reserved.</p>
     </div>
   </footer>
